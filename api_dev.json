@@ -1,0 +1,17 @@
+{
+    "apps":[{
+        "name": "coco_api_dev",
+        "script": "server.js",
+        "watch": false,
+        "cwd": ".",
+        "log_file": "log/access.log",
+        "error_file": "log/error.log",
+        "out_file": "log/out.log",
+        "env_development": {
+            "NODE_ENV": "development",
+            "API_PORT": "5111",
+            "FILE_DOWN_URL": "/upload",
+            "File_UP_URL": "../upload"        
+        }
+    }]
+}
