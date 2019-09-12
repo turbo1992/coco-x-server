@@ -27,6 +27,6 @@ router
   .post('/v1/food/addFood', food.addFood) //添加餐品
   .get('/v1/food/foodList', food.foodList) //查询餐品列表
   .post('/v1/food/editFood', food.editFood) //编辑餐品信息
-  .post('/v1/food/deleteFood', food.deleteFood) //删除餐品
+  .get('/v1/food/deleteFood', food.deleteFood) //删除餐品
 
 exports = module.exports = router;
