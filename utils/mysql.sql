@@ -11,7 +11,7 @@
  Target Server Version : 80015
  File Encoding         : 65001
 
- Date: 11/09/2019 17:41:46
+ Date: 12/09/2019 17:11:12
 */
 
 SET NAMES utf8mb4;
@@ -34,7 +34,29 @@ CREATE TABLE `food` (
   `create_time` datetime DEFAULT NULL,
   `version` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- ----------------------------
+-- Table structure for order
+-- ----------------------------
+DROP TABLE IF EXISTS `order`;
+CREATE TABLE `order` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `amount` int(11) DEFAULT NULL,
+  `num` int(11) DEFAULT NULL,
+  `pay` decimal(30,2) DEFAULT NULL,
+  `status` int(11) DEFAULT '0',
+  `create_time` datetime DEFAULT NULL,
+  `pay_time` datetime DEFAULT NULL,
+  `cancel_time` datetime DEFAULT NULL,
+  `delete_time` datetime DEFAULT NULL,
+  `update_time` datetime DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `type` varchar(45) DEFAULT NULL,
+  `trade_num` varchar(45) DEFAULT NULL,
+  `content` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- ----------------------------
 -- Table structure for user
@@ -51,6 +73,6 @@ CREATE TABLE `user` (
   `score` decimal(30,2) DEFAULT '0.00',
   `password` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 SET FOREIGN_KEY_CHECKS = 1;
