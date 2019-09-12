@@ -1,16 +1,9 @@
 
-var keypairs = require('chainsql-keypairs/distrib/npm');
-var keypairsUtils = require('chainsql-keypairs/distrib/npm/utils')
 const config = require('../configs');
 const db = require('../models/db');
-const binary = require('chainsql-binary-codec/distrib/npm');
 
 var RetCode = config.RET_CODE;
 const User = db.user;
-const Admin = db.admin;
-const UserTx = db.userTx;
-const SmsCode = db.smsCode;
-const InviteCode = db.inviteCode;
 
 
 function checkTimestamp(timestamp, ctx) {
@@ -23,22 +16,8 @@ function checkTimestamp(timestamp, ctx) {
   }
   var nowDateSec = Date.now();
   var timestampReq = parseInt(timestamp);
-  // console.log("checkTimestamp>>>>>>%s--%s--%s", ctx.href, JSON.stringify(ctx.body), JSON.stringify(ctx.query))
-  // console.log("!!!time stamp is:", timestampReq);
-  // console.log("now sec is:", nowDateSec);
-  // if (nowDateSec - timestampReq > 60000) {
-  //   ctx.body = {
-  //     code: RetCode.timestampErr,
-  //     msg: "timestamp error"
-  //   };
-  //   return false;
-  // }
 
   return true;
-}
-
-async function verifySign(walletOrPubkey, message, sign_data) {
-  return keypairs.verify(keypairsUtils.bytesToHex(stringToBytes(message)), sign_data, walletOrPubkey);
 }
 
 function strIsEmpty(str) {
@@ -107,12 +86,6 @@ function getWeekStartDate(paraYear, paraMonth, paraDay, paraDayOfWeek) {
 }
 
 //解码客户端提交的交易blob，返回相应的json
-function decodeTxBlob(txBlob) {
-  var txJson = binary.decode(txBlob);
-  return txJson; 
-}
-
-//解码客户端提交的交易blob，返回相应的json
 function searchStr(searchVal) {
   let searchStr = searchVal.replace(/%/g, '\\%')
   searchStr = searchStr.replace(/_/g, '\\_')
@@ -123,14 +96,9 @@ function searchStr(searchVal) {
 module.exports = {
   User,
   db,
-  UserTx,
   stringToBytes,
   strIsEmpty,
-  verifySign,
   checkTimestamp,
-  createInviteCode,
-  createSMSCode,
   getWeekStartDate,
-  decodeTxBlob,
   searchStr
 }

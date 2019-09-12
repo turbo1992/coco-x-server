@@ -10,9 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@alicloud/sms-sdk": "^1.1.2",
     "axios": "^0.18.0",
-    "chainsql-lib": "0.17.36",
     "crypto": "^1.0.1",
     "date-utils": "^1.2.21",
     "decimal": "0.0.2",
