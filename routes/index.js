@@ -6,6 +6,7 @@ const config = require('../configs'),
   public = require('../controllers/public')
   user = require('../controllers/user')
   food = require('../controllers/food')
+  order = require('../controllers/order')
 
 /* HTTP动词
     GET     //查询
@@ -28,5 +29,10 @@ router
   .get('/v1/food/foodList', food.foodList) //查询餐品列表
   .post('/v1/food/editFood', food.editFood) //编辑餐品信息
   .get('/v1/food/deleteFood', food.deleteFood) //删除餐品
+
+  .post('/v1/order/submitOrder', order.submitOrder) //提交订单
+  .get('/v1/order/delOrder', order.delOrder) //删除订单
+  .get('/v1/order/orderList', order.orderList) //订单列表
+  .get('/v1/order/orderStatistics', order.orderStatistics) //订单统计  
 
 exports = module.exports = router;

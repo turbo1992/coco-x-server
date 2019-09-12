@@ -14,6 +14,12 @@ let config = {
         create: 0,
         activated: 1
     },
+    ORDER_STATE: {
+        delete: -1,
+        create: 0,
+        activated: 1,
+        finish: 2,
+    },
     RET_CODE: {
         success: 'success', //成功
         recordNotFound: 'recordNotFound', //查询记录未找到

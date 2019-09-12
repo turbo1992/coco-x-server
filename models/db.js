@@ -35,6 +35,10 @@ const models = [{
     {
         "name": "food",
         "path": "./food.js"
+    },
+    {
+        "name": "order",
+        "path": "./order.js"
     }
 ]
 
