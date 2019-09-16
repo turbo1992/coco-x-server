@@ -3580,3 +3580,20 @@
 [31m[1m13:54:08.56 <error> ReferenceError: err is not defined[22m[39m
 [31m[1m    at pubComment (/Users/Turbo/Documents/GitHub/guluchain_web/server/controllers/comments.js:293:9)[22m[39m
 [31m[1m    at <anonymous> (in errorHandle.js:24)[22m[39m
+[31m[1m18:27:19.93 <error> SyntaxError: Unexpected token i in JSON at position 2[22m[39m
+[31m[1m    at JSON.parse (<anonymous>)[22m[39m
+[31m[1m    at submitOrder (/Users/Turbo/Documents/GitHub/coco-x-server/controllers/order.js:25:22)[22m[39m
+[31m[1m    at dispatch (/Users/Turbo/Documents/GitHub/coco-x-server/node_modules/koa-router/node_modules/koa-compose/index.js:44:32)[22m[39m
+[31m[1m    at next (/Users/Turbo/Documents/GitHub/coco-x-server/node_modules/koa-router/node_modules/koa-compose/index.js:45:18)[22m[39m
+[31m[1m    at /Users/Turbo/Documents/GitHub/coco-x-server/node_modules/koa-router/lib/router.js:346:16[22m[39m
+[31m[1m    at dispatch (/Users/Turbo/Documents/GitHub/coco-x-server/node_modules/koa-router/node_modules/koa-compose/index.js:44:32)[22m[39m
+[31m[1m    at /Users/Turbo/Documents/GitHub/coco-x-server/node_modules/koa-router/node_modules/koa-compose/index.js:36:12[22m[39m
+[31m[1m    at dispatch (/Users/Turbo/Documents/GitHub/coco-x-server/node_modules/koa-router/lib/router.js:351:31)[22m[39m
+[31m[1m    at dispatch (/Users/Turbo/Documents/GitHub/coco-x-server/node_modules/koa-compose/index.js:42:32)[22m[39m
+[31m[1m    at module.exports (/Users/Turbo/Documents/GitHub/coco-x-server/middlewares/errorHandle.js:20:15)[22m[39m
+[31m[1m    at dispatch (/Users/Turbo/Documents/GitHub/coco-x-server/node_modules/koa-compose/index.js:42:32)[22m[39m
+[31m[1m    at module.exports (/Users/Turbo/Documents/GitHub/coco-x-server/middlewares/response.js:11:11)[22m[39m
+[31m[1m    at dispatch (/Users/Turbo/Documents/GitHub/coco-x-server/node_modules/koa-compose/index.js:42:32)[22m[39m
+[31m[1m    at bodyParser (/Users/Turbo/Documents/GitHub/coco-x-server/node_modules/koa-bodyparser/index.js:86:11)[22m[39m
+[31m[1m    at <anonymous>[22m[39m
+[31m[1m    at process._tickCallback (internal/process/next_tick.js:188:7) (in errorHandle.js:24)[22m[39m
