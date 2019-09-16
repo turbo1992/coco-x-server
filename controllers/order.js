@@ -8,7 +8,9 @@ const Op = Sequelize.Op
 var db = Utils.db;
 var RetCode = config.RET_CODE;
 const User = db.user;
+const Food = db.food;
 const Order = db.order;
+const OrderFood = db.order_food;
 
 class OrderController {
     // 提交订单
@@ -17,7 +19,7 @@ class OrderController {
             teleNum,
             pay,
             type,
-            content
+            foods
         } = ctx.request.body;
         console.log(ctx.request.body);
 
@@ -29,10 +31,7 @@ class OrderController {
             if (Utils.strIsEmpty(pay)) {
                 msg = "支付金额不能为空!"
             }
-            if (Utils.strIsEmpty(type)) {
-                msg = "订单类型不能为空!"
-            }
-            if (Utils.strIsEmpty(content)) {
+            if (Utils.strIsEmpty(foods) || foods.length == 0) {
                 msg = "订单内容不能为空!"
             }
             if (msg) {
@@ -58,17 +57,53 @@ class OrderController {
 
             var order;
             order = await Order.create({
+                'trade_num': 201909160001,
                 'pay': pay,
                 'type': type,
-                'content': content,
-                'user_id': user.id,
                 'status': OrdrState.activated,
                 'create_time': moment(),
+                'user_id': user.id,
             }).catch(err => {
                 console.log(err);
             });
 
             await order.save();
+
+            for (let index = 0; index < foods.length; index++) {
+                const food = foods[index];
+
+                var searchFood = await Food.find({
+                    where: {
+                        id: food.id
+                    }
+                })
+                if (!searchFood) {
+                    ctx.body = {
+                        code: RetCode.recordNotFound,
+                        msg: "餐品不存在"
+                    };
+                    return;
+                }
+
+                var order_food;
+                order_food = await OrderFood.create({
+                    'order_id': order.id,
+                    'food_id': searchFood.id,
+                    'name': searchFood.name,
+                    'image_url': searchFood.image_url,
+                    'price': searchFood.price,
+                    'amount': food.amount,
+                    'type': type,
+                    'status': OrdrState.activated,
+                    'create_time': moment(),
+                    'tele_num': user.tele_num
+                }).catch(err => {
+                    console.log(err);
+                });
+
+                await order_food.save();
+            }
+            
             ctx.body = {
                 code: RetCode.success,
                 msg: '订单提交成功',
@@ -286,7 +321,7 @@ class OrderController {
                     [Op.like]: '%' + searchName + '%'
                 }
             }
-            
+
             var list = await Order.findAndCountAll({
                 where: where,
                 offset: +offSet,
@@ -300,7 +335,7 @@ class OrderController {
                     const item = list.rows[index];
                     var content = item.content;
                     var foods = new Array();
-                    foods = content.split(";"); 
+                    foods = content.split(";");
                     for (let j = 0; j < foods.length; j++) {
                         const food = foods[j];
                         var foodArr = new Array();
@@ -313,7 +348,7 @@ class OrderController {
                 }
                 //console.log('tag', types, totalPrice);
             }
-            
+
             ctx.body = {
                 code: RetCode.success,
                 msg: "订单统计完成",

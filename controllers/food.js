@@ -8,6 +8,7 @@ var db = Utils.db;
 var RetCode = config.RET_CODE;
 const User = db.user;
 const Food = db.food;
+const FoodType = db.food_type;
 
 class FoodController {
     //添加餐品
@@ -72,6 +73,22 @@ class FoodController {
                 return;
             }
 
+            var food_type;
+            if (!Utils.strIsEmpty(type)) {
+                var food_type = await FoodType.find({
+                    where: {
+                        type: type
+                    }
+                })
+                if (!food_type) {
+                    ctx.body = {
+                        code: RetCode.recordNotFound,
+                        msg: "餐品类型不存在"
+                    };
+                    return;
+                }
+            }
+            
             var food;
             if (!Utils.strIsEmpty(name)) {
                 var food = await Food.find({
@@ -93,6 +110,8 @@ class FoodController {
                 'type': type,
                 'price': price,
                 'stock': stock,
+                'sales': 0,
+                'heat': 0,
                 'image_url': image_url,
                 'content': content,
                 'create_time': moment(),

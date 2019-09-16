@@ -1,15 +1,35 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('order', {
+  return sequelize.define('order_food', {
     id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
-    pay: {
+    order_id: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true
+    },
+    food_id: {
+      type: DataTypes.INTEGER(11),
+      allowNull: true
+    },
+    name: {
+      type: DataTypes.STRING(45),
+      allowNull: true
+    },
+    image_url: {
+      type: DataTypes.STRING(500),
+      allowNull: true
+    },
+    price: {
       type: DataTypes.DECIMAL,
+      allowNull: true
+    },
+    amount: {
+      type: DataTypes.INTEGER(11),
       allowNull: true
     },
     status: {
@@ -37,19 +57,19 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.DATE,
       allowNull: true
     },
-    user_id: {
-      type: DataTypes.INTEGER(11),
+    tele_num: {
+      type: DataTypes.STRING(45),
       allowNull: true
     },
     type: {
       type: DataTypes.STRING(45),
       allowNull: true
     },
-    trade_num: {
-      type: DataTypes.STRING(45),
+    num: {
+      type: DataTypes.INTEGER(11),
       allowNull: true
     }
   }, {
-    tableName: 'order'
+    tableName: 'order_food'
   });
 };
